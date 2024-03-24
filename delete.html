@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <button onClick="getCredentials()">Start!</button>
+    <div id="Credentials"></div>
+
+    <h1>Student Names</h1>
+    <ul id="studentList">
+        <li>Ghafy</li>
+        <li>Hilson</li>
+        <li>Isreal</li>
+        <li>Ebere</li>
+        <li>Darlington</li>
+    </ul>
+   
+    <button onClick="deleteStudent()" style="display:none;" id="deleteButton">Delete</button>
+    <script>
+        const Credentials = document.getElementById('Credentials');
+        function getCredentials() {
+            const username = prompt('Enter your username:');
+            const passcode = prompt('Enter your passcode:');
+
+            if (username && passcode) {
+                Credentials.innerHTML = (Username: ${username}\nPasscode: ${passcode});
+                document.getElementById('deleteButton').style.display = 'block';
+            }
+        }
+
+        function deleteStudent() {
+            const students = studentList.getElementsByTagName('li');
+            const index = prompt('Enter the index of the student you want to delete:');
+
+            if (index >= 0 && index < students.length) {
+                studentList.removeChild(students[index]);
+            } else {
+                alert('Invalid index');
+            }
+        }
+    </script>
+</body>
+</html>
