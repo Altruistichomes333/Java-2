@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Quiz App</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .quiz-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  #result {
+    font-size: 24px;
+    margin-top: 20px;
+  }
+
+  #abo{
+    background-color: rgb(9, 163, 84);
+    color: white;
+    padding: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="quiz-container">
+  <input type="text" id="inputData" placeholder="type answer here">
+  <div id="question"></div>
+  <div id="result"></div>
+  <div id="abo"></div>
+  <button id="startButton">Start Quiz</button>
+</div>
+
+<script>
+const quizData = [
+  {
+    question: 'Who is the Cohort Leader of Cohort 15?',
+    answer: 'Gahfar'
+  },
+  {
+    question: 'What year did Nigeria get its Independence?',
+    answer: '1960'
+  },
+  {
+    question: 'What is the is the structure of a web page?',
+    answer: 'HTML'
+  }
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+const abotIt = document.getElementById('abo')
+
+const questionElement = document.getElementById('question');
+const resultElement = document.getElementById('result');
+const startButton = document.getElementById('startButton');
+
+startButton.addEventListener('click', startQuiz);
+
+function startQuiz() {
+  startButton.style.display = 'none';
+  loadQuestion();
+}
+
+function loadQuestion() {
+  questionElement.innerText = quizData[currentQuestion].question;
+  const userAnswer = prompt(quizData[currentQuestion].question);
+  checkAnswer(userAnswer, quizData[currentQuestion].answer);
+}
+
+function checkAnswer(userAnswer, correctAnswer) {
+  if (userAnswer !== null) {
+    if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+      score++;
+      resultElement.innerText = Correct! Score: ${score};
+    } else {
+      resultElement.innerText =Incorrect! Score: ${score};
+    }
+    currentQuestion++;
+    if (currentQuestion < quizData.length) {
+      loadQuestion();
+    } else {
+      const percentage = (score / quizData.length) * 100;
+      abotIt.innerHTML=Quiz completed!\nYour score: ${score}/${quizData.length} (${percentage}%);
+    }
+  } else {
+    abotIt.innerHTML=('Quiz aborted.');
+  }
+  
+}
+</script>
+</body>
+</html>
